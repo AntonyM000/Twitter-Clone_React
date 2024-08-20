@@ -41,7 +41,8 @@ const Profile = () => {
       </header>
 
       <div className='w-full h-48 bg-center bg-no-repeat bg-fixed bg-[url("/hat.jpg")]'>
-        <img className='float-left mt-24 ml-2 rounded-full  w-20 h-20' src="/pexels-alex-andrews-271121-821736.jpg" alt="" />
+        <img className='float-left mt-24 ml-2 rounded-full  w-20 h-20' src="https://docs.material-tailwind.com/img/face-2.jpg" alt="" />
+
       </div>
 
       <div className='w-full'>
