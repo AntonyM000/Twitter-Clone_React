@@ -5,6 +5,7 @@ import { collection, doc, getDoc, getDocs, getFirestore, query } from 'firebase/
 import { NavLink } from 'react-router-dom';
 import { CiCircleChevRight, CiSearch, CiSettings } from "react-icons/ci";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import Emoji from '../components/EmojiPicker';
 
 const Explore = () => {
   const db= getFirestore(app)
@@ -50,7 +51,7 @@ const Explore = () => {
   },[auth,db])
   
   
-  const forYou= [{'TrendingWhere':'Trending in Kenya', 'content':'Omanyala','PostsNumber':'412K'}]
+  const forYou= [{'TrendingWhere':'Trending in Kenya', 'content':'Omanyala','PostsNumber':'412K'},{'TrendingWhere':'Trending in Kenya', 'content':'Faith Kipyegon','PostsNumber':'502K'},{'TrendingWhere':'Trending in Kenya', 'content':'#NaneNaneMarch','PostsNumber':'412K'},{'TrendingWhere':'Trending in Kenya', 'content':'Matiangi For President','PostsNumber':'412K'}]
   return (
   <>
   <div className='flex w-full text-white bg-black flex-col'>
@@ -81,18 +82,16 @@ const Explore = () => {
           
           <div className='w-11/12'>
              <p className="text-xs leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-              Trending in Kenya  </p>
-            <h2 className='font-semibold text-lg'>#Omanyala</h2>
+              {item.TrendingWhere} </p>
+            <h2 className='font-semibold text-lg'>{item.content}</h2>
             <p className="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-              412K posts </p>
+              {item.PostsNumber} </p>
               <BiDotsHorizontalRounded size={24} className='mb-auto ml-auto' />
           </div>
           ))}
-          
-          <p>Faith Kipyegon</p>
-          <p>#NaneNaneMarch</p>
-          <p>Matiangi for President</p>
+
         </div>
+      
         <div>
           <label><video src="2054085-hd_1280_720_30fps.mp4"  controls className='w-10/12  mx-auto max-w-[26rem] rounded-xl border-1 border-white mb-4'></video>From:Yeyeye</label>
         </div>

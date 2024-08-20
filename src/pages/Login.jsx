@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { app } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../hooks/useAuth";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Login = () => {
 
@@ -25,11 +26,12 @@ const Login = () => {
   return (
     <>
     <div className='logo-image bg-slate-600'></div>
-    <form className='bg-red-100 flex flex-col m-3 rounded items-center ' onSubmit={handleSubmit}>
-      <h2>Login</h2>
-       <input className='m-2 rounded ' type="email" ref={emailRef} placeholder='Email'/>
-       <input className='m-2 rounded ' type="text" ref={passwordRef} placeholder='Password'/>
-    <button className="p-1 bg-blue-gray-900 rounded text-white ">Login</button>
+    <form className=' flex flex-col m-3 rounded items-center ' onSubmit={handleSubmit}>
+    <FaSquareXTwitter size={72} className="text-blue-700"/>
+      <h2 className="font-medium text-4xl">Log in to X</h2>
+       <input className='m-2 max-w-screen-sm rounded border-2 py-2 items-center align-middle justify-center px-10' type="email" ref={emailRef} placeholder='Email'/>
+       <input className='m-2 max-w-screen-sm rounded border-2 py-2 px-10' type="text" ref={passwordRef} placeholder='Password'/>
+    <button className="p-1 bg-blue-600 rounded-3xl text-white font-bold px-10 min-w-28">Login</button>
     </form>
     </>
   )

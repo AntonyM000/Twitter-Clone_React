@@ -12,6 +12,11 @@ import Explore from "./pages/Explore";
 import Notification from "./pages/Notifications";
 import Message from "./pages/Message";
 import Profile from "./pages/Profile";
+import PostsProfile from "./components/PostsProfile";
+import RepliesProfile from "./components/RepliesProfile";
+import HighlightsProfile from "./components/HighlightsProfile";
+import MediaProfile from "./components/MediaProfile";
+import ProtectedRoute from "./pages/ProtectedRoute.jsx";
 
 
 
@@ -27,11 +32,18 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<HomeLayout />}>
-            <Route index element={<Home/>}/>
-            <Route path="/explore" element={<Explore/>}/>
-            <Route path="/notification" element={<Notification/>}/>
-            <Route path="/message" element={<Message/>}/>
-            <Route path="/profile" element={<Profile/>}/>
+            <Route element={<ProtectedRoute/>}>
+              <Route index element={<Home/>}/>
+              <Route path="/explore" element={<Explore/>}/>
+              <Route path="/notification" element={<Notification/>}/>
+              <Route path="/message" element={<Message/>}/>
+              <Route path="/profile/*" element={<Profile/>}>
+                    <Route index element={<PostsProfile/>}/>
+                    <Route path='replies' element={<RepliesProfile/>}/>
+                    <Route path='highlights' element={<HighlightsProfile/>}/>
+                    <Route path='media' element={<MediaProfile/>}/>
+              </Route>
+            </Route>
         </Route>
         {/* <Route index element={<Dashboard/>} /> */}
 

@@ -5,46 +5,66 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { app } from '../firebase';
 import { IoImagesOutline } from 'react-icons/io5';
-import { AuthContext } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
+import { useData } from '../hooks/useData';
+import Emoji from '../components/EmojiPicker';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Home = () => {
-  const { currentUser } = useContext(AuthContext);
-  const [tweets, setTweets] = useState([]);
-  const tweetRef = useRef();
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState('');
   const [tweetContent, setTweetContent] = useState('');
-  const [userName, setUserName] = useState('');
+  const [emojiShow, setEmojiShow] = useState(false);
+
   const db = getFirestore(app);
   const storage = getStorage(app);
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const { userName, tweets } = useData();
+  // const auth = getAuth();
+  // const uid = auth.currentUser?.uid
+  // const {currentUser} =useAuth();
+  // const {userName} =useData();
+  // const {tweets}=useData()
 
-  useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-      return;
-    }
 
-    const tweetsQuery = query(collection(db, 'tweets'));
-    const unsubscribeTweets = onSnapshot(tweetsQuery, (snapshot) => {
-      const tweetsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setTweets(tweetsData);
-    });
+  // useEffect(() => {
+  //   const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+  //     // const unsubscribeAuth = ()=>
+  //     if (!currentUser) {
+  //       navigate("/login");
+  //     } else {
+  //       const userDocRef = doc(db, "users", uid);
 
-    const unsubscribeUsername = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {
-      if (docSnap.exists) {
-        const userData = docSnap.data();
-        const username = userData.userName;
-        console.log(username);
-        setUserName(username);
-      }
-    });
+  //       // Fetch the user's username from the database
+  //       // const unsubscribeUsername = onSnapshot(userDocRef, (docSnap) => {
+  //       //   if (docSnap.exists) {
+  //       //     const userData = docSnap.data();
+  //       //     setUserName(userData.userName);
+  //       //   }
+  //       // });
 
-    return () => {
-      unsubscribeTweets();
-      unsubscribeUsername();
-    };
-  }, [db, currentUser, navigate]);
+  //       // const tweetsQuery = query(collection(db, 'tweets'));
+  //       // const unsubscribeTweets = onSnapshot(tweetsQuery, (snapshot) => {
+  //       //   const tweetsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  //       //   setTweets(tweetsData);
+  //       // });
+
+  //       return () => {
+  //         unsubscribeUsername();
+  //         unsubscribeTweets();
+  //       };
+  //     }
+  //   });
+
+  //   return () => {
+  //     unsubscribeAuth();
+  //   };
+  // }, [db, currentUser, navigate]);
+
+  const emojihandleclick = () => {
+    setEmojiShow(true);
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -70,10 +90,14 @@ const Home = () => {
   };
 
   const tweetFunction = async () => {
+    // const user = auth.currentUser; // Get the current user directly from Firebase
+   console.log('uploading')
+
     if (!tweetContent) {
       alert('Please enter some content to tweet');
       return;
     }
+
     let imageUrl = '';
     if (file) {
       imageUrl = await uploadFile(file);
@@ -90,10 +114,12 @@ const Home = () => {
       setTweetContent('');
       setFile(null);
       setImageSrc('');
+      console.log('Tweet added successfully')
     } catch (error) {
       console.error('Error adding tweet: ', error);
     }
   };
+
 
   return (
     <>
@@ -154,7 +180,7 @@ const Home = () => {
                   <IoImagesOutline />
                 </label>
                 </div>
-
+                {emojiShow && <Emoji onAddEmoji={setTweetContent}/>}
                  {/* video upload */}
                              <div className="flex-1 text-center py-2 m-2">
                                  <Link to="#" className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800 hover:text-blue-300">
@@ -169,7 +195,7 @@ const Home = () => {
                              </div>
 
                              <div className="flex-1 text-center py-2 m-2">
-                                 <Link to="#" className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800 hover:text-blue-300">
+                                 <Link to="#" onClick={emojihandleclick} className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-blue-800 hover:text-blue-300">
                                  <svg className="text-center h-7 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                              </Link>
                              </div>
