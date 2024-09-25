@@ -36,7 +36,7 @@ const Profile = () => {
   return (
     <div className='w-full'>
       <header>
-        <h2 className='ml-1 font-bold'>Stas UserName</h2>
+        <h2 className='ml-1 font-bold'>Omondi Timon</h2>
         <p className='ml-2 text-sm text-gray-500'> 32 Posts</p>
       </header>
 
@@ -52,14 +52,14 @@ const Profile = () => {
           <button className='bg-black rounded-xl mr-2 mt-1 p-1 text-white'>Follow</button>
         </div>
 
-        <h2 className='font-bold mt-7'>UserName</h2>
-        <p className='text-gray-400 text-sm'>@Nesprokin</p>
+        <h2 className='font-bold mt-7'>Omondi Timon</h2>
+        <p className='text-gray-400 text-sm'>@Omondi Timon</p>
 
         <p className='mt-6 ml-1 text-sm '>Designing Products that Users Love</p>
         <div className="icons flex flex-wrap ml-2 mt-1 mb-1 space-x-3">
           <p className="text-gray-400 flex text-sm"><IoBagHandleOutline />Entrepreneur</p>
           <p className="text-gray-400 flex text-sm"><RiMapPinLine />Earth</p>
-          <Link className="text-blue-300 flex text-sm"><IoMdLink className='text-gray-400'/>neprokin.com</Link>
+          <Link className="text-blue-300 flex text-sm"><IoMdLink className='text-gray-400'/>timonom.com</Link>
           <p className="text-gray-400 flex text-sm"><IoBalloonOutline />Born November 7, 1987</p>
           <p className="text-gray-400 flex text-sm"><HiOutlineCalendarDays />Joined November 2010</p>
         </div>

@@ -10,7 +10,7 @@ const RightSidebar = () => {
 
   return (
     <>
-    <div className=' h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 hidden sm:block'>
+    <div className=' h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 hidden md:block'>
         <div className='container ml-2 relative flex'>
           <CiSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600' size={24}/> 
           <input type="text" placeholder='Search' className='pl-10 bg-black border-2 m-2 border-white w-full h-10 rounded-2xl' />

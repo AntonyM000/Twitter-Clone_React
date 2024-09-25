@@ -51,7 +51,7 @@ const Explore = () => {
   },[auth,db])
   
   
-  const forYou= [{'TrendingWhere':'Trending in Kenya', 'content':'Omanyala','PostsNumber':'412K'},{'TrendingWhere':'Trending in Kenya', 'content':'Faith Kipyegon','PostsNumber':'502K'},{'TrendingWhere':'Trending in Kenya', 'content':'#NaneNaneMarch','PostsNumber':'412K'},{'TrendingWhere':'Trending in Kenya', 'content':'Matiangi For President','PostsNumber':'412K'}]
+  const forYou= [{'TrendingWhere':'Trending in Luxembourg', 'content':'#Energy','PostsNumber':'412K'},{'TrendingWhere':'Business $ Finance', 'content':'Interest Rates','PostsNumber':'502K'},{'TrendingWhere':'Trending', 'content':'#TogetherMarch','PostsNumber':'1020'},{'TrendingWhere':'Trending ', 'content':'Architecture Firm','PostsNumber':'500'}]
   return (
   <>
   <div className='flex w-full text-white bg-black flex-col'>
@@ -66,8 +66,8 @@ const Explore = () => {
           <NavLink>For you</NavLink>
           <NavLink>Trending</NavLink>
           <NavLink>News</NavLink>
-          <NavLink>Sports</NavLink>
-          <NavLink>Entertainment</NavLink>
+          {/* <NavLink>Sports</NavLink>
+          <NavLink>Entertainment</NavLink> */}
         </div>
 
         <NavLink className="bg-center justify-evenly items-center flex flex-col bg-cover mb-2 bg-blue-400 bg-no-repeat" >

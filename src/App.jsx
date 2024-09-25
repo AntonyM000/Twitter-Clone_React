@@ -34,7 +34,7 @@ function App() {
         <Route path="/" element={<HomeLayout />}>
             <Route element={<ProtectedRoute/>}>
               <Route index element={<Home/>}/>
-              <Route path="/explore" element={<Explore/>}/>
+              <Route path="/explore" element={<Explore/>} isExplore/>
               <Route path="/notification" element={<Notification/>}/>
               <Route path="/message" element={<Message/>}/>
               <Route path="/profile/*" element={<Profile/>}>
@@ -45,7 +45,7 @@ function App() {
               </Route>
             </Route>
         </Route>
-        {/* <Route index element={<Dashboard/>} /> */}
+        <Route path="*" element={<Profile/>} />
 
         {/* </Route> */}
       </Routes>
